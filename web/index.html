@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect | Networking Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <aside>
+            <div class="logo-container">
+                <div class="logo-icon"><i data-lucide="graduation-cap"></i></div>
+                <span class="logo-text">AlumniConnect</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li id="nav-alumni" onclick="showSection('alumni')">
+                        <i data-lucide="users"></i> Alumni Profiles
+                    </li>
+                    <li id="nav-jobs" onclick="showSection('jobs')">
+                        <i data-lucide="briefcase"></i> View Job Postings
+                    </li>
+                    <li id="nav-post-job" onclick="openModal('jobs')">
+                        <i data-lucide="plus-circle" style="color: var(--secondary);"></i> Post Job Opportunity
+                    </li>
+                    <li id="nav-mentors" onclick="showSection('mentors')">
+                        <i data-lucide="message-square"></i> View Mentors
+                    </li>
+                </ul>
+            </nav>
+
+            <div style="margin-top: auto; padding: 1.2rem; background: rgba(99, 102, 241, 0.1); border-radius: 16px; border: 1px solid var(--primary);">
+                <p style="font-size: 0.75rem; color: var(--primary-light); margin-bottom: 0.4rem; font-weight: 700;">DATABASE ENGINE</p>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></div>
+                    <span style="font-size: 0.85rem; font-weight: 600;">JDBC Connected</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <header>
+                <div class="header-title">
+                    <h1 id="section-title">Alumni Profiles</h1>
+                    <p id="section-subtitle">Storing and retrieving records using industry-based queries.</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <i data-lucide="search" style="width: 18px; color: var(--text-secondary);"></i>
+                        <input type="text" placeholder="Query industry or name..." id="search-input" onkeyup="handleSearch()">
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal()">
+                        <i data-lucide="plus"></i> Add New
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Bar (Hidden by default, shown in dashboard if needed) -->
+            <div id="stats-container" style="display: none; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="stat-card">
+                    <span class="stat-label">Total Alumni</span>
+                    <span class="stat-value" id="stat-alumni-count">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Job Postings</span>
+                    <span class="stat-value" id="stat-jobs-count">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Active Mentors</span>
+                    <span class="stat-value" id="stat-mentors-count">0</span>
+                </div>
+            </div>
+
+            <div id="content-grid" class="grid fade-in">
+                <!-- Data will appear here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title" style="margin-bottom: 1.5rem;">Add Entry</h2>
+            <form id="entry-form" onsubmit="event.preventDefault(); saveData();">
+                <div id="form-fields"></div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 2;">Save to Database</button>
+                    <button type="button" class="btn" onclick="closeModal()" style="flex: 1; background: rgba(255,255,255,0.05); color: white;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
